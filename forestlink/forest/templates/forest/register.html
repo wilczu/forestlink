@@ -1,12 +1,12 @@
 {% extends "forest/layout.html" %}
 
-{% block title %} Login {% endblock %}
+{% block title %} Register {% endblock %}
 
 {% block body %}
 
     <div class="container text-center text-white">
         <header>
-            <h1>Welcome back!</h1>
+            <h1>Register your account</h1>
         </header>
 
         <main class="d-flex justify-content-center" style="margin-top: 30px;">
@@ -16,17 +16,18 @@
                         <input type="text" class="form-control" placeholder="Username">
                     </div>
                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="input-group mb-3">
                         <input type="password" class="form-control" placeholder="Password">
                     </div>
                     <div class="input-group mb-3">
-                        <button class="btn btn-primary">Log in</button>
+                        <button class="btn btn-primary">Register now</button>
                     </div>
                 </form>
 
                 <section>
-                    <article>Create your account for free <span class="badge bg-light text-dark">
-                        <a href="{% url 'register' %}">click here</a>
-                    </span></article>
+                    <article>Create your account for free <span class="badge bg-light text-dark"><a href="#">click here</a></span></article>
                 </section>
 
             </div>

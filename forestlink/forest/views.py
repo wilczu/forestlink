@@ -7,3 +7,7 @@ def index(request):
 
 def login(request):
     return render(request, "forest/login.html")
+
+
+def register(request):
+    return render(request, "forest/register.html")
