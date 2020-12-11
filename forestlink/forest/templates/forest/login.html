@@ -10,13 +10,21 @@
         </header>
 
         <main class="d-flex justify-content-center" style="margin-top: 30px;">
+
+            {% if error %}
+                <div class="alert alert-warning" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+
             <div class="col-md-4">
                 <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                     <div class="input-group mb-3">
                         <button class="btn btn-primary">Log in</button>
