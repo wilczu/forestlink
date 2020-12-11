@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link" href="{% url 'index' %}">Home page</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Features</a>
@@ -24,34 +24,48 @@
               </ul>
 
               <span class="navbar-text">
-                <div class="btn-group dropup">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Hi, {{ user.username }}
-                    </button>
-                    <ul class="dropdown-menu">
-                        <div class="card" style="width: 18rem;">
-                            <div class="text-center text-white">
-                                <img class="card-img-top rounded-circle" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_1280.jpg" alt="User image">
-                                <div class="card-body">
-                                  <h5 class="card-title">Welcome <b>{{ user.username }}</b>!</h5>
-                                </div>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">Settings</li>
-                              <li class="list-group-item"><a href="{% url 'logout' %}">Logout</a></li>
-                              <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                          </div>
-                    </ul>
-                  </div>
+                Hi, <b>{{ user.username }}</b>!
               </span>
-              
             </div>
         </div>
     </nav>
 
     <main>
-        
+        <section>
+          <div class="d-flex justify-content-center" style="margin-top: 30px;">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPage">Add page</button>
+          </div>
+        </section>
     </main>
+
+  <!-- Add page modal -->
+  <div class="modal fade" id="addPage" tabindex="-1" aria-labelledby="addPageLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPageLabel">Add page</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form action="{% url 'user' %}" method="POST">
+            <div class="form-group">
+              <label for="pageURL">Page url:</label>
+              <input type="text" class="form-control" id="pageURL" placeholder="https://google.com">
+            </div>
+            <div class="form-group">
+              <label for="pageURL">Title:</label>
+              <input type="text" class="form-control" id="title" placeholder="Google search">
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success">Add this page</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
