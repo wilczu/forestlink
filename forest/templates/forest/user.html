@@ -1,0 +1,57 @@
+{% extends "forest/layout.html" %}
+
+{% block title %} Home page {% endblock %}
+
+{% block body %}
+
+    <nav class="navbar fixed-bottom navbar-dark bg-success navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ForestLink</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+              </ul>
+
+              <span class="navbar-text">
+                <div class="btn-group dropup">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Hi, {{ user.username }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <div class="card" style="width: 18rem;">
+                            <div class="text-center text-white">
+                                <img class="card-img-top rounded-circle" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_1280.jpg" alt="User image">
+                                <div class="card-body">
+                                  <h5 class="card-title">Welcome <b>{{ user.username }}</b>!</h5>
+                                </div>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Settings</li>
+                              <li class="list-group-item"><a href="{% url 'logout' %}">Logout</a></li>
+                              <li class="list-group-item">Vestibulum at eros</li>
+                            </ul>
+                          </div>
+                    </ul>
+                  </div>
+              </span>
+              
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        
+    </main>
+
+{% endblock %}

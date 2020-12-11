@@ -18,7 +18,7 @@ def login_view(request):
         
         if user is not None:
             login(request, user)
-            return redirect(reverse("index"))
+            return redirect(reverse("user"))
         else:
             return render(request, "forest/login.html", {
                 "error": "Invalid username or password!"
@@ -53,7 +53,10 @@ def register_view(request):
             })
 
         login(request, user)
-        return redirect(reverse("index"))
+        return redirect(reverse("user"))
     else:  
         return render(request, "forest/register.html")
 
+
+def user_view(request):
+    return render(request, "forest/user.html")

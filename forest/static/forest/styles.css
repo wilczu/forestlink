@@ -1,0 +1,12 @@
+body {
+    background-color: #212121;
+}
+
+.dropup .dropdown-menu {
+    margin-left: -11rem;
+}
+
+.card-img-top {
+    width: 150px;
+    height: 150px;
+}
