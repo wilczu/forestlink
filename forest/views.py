@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
+from django.core.exceptions import ObjectDoesNotExist
 
-from .models import User
+from .models import User, Blacklist
 
 # Create your views here.
 def index(request):
@@ -59,4 +60,24 @@ def register_view(request):
 
 
 def user_view(request):
-    return render(request, "forest/user.html")
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            page_name = request.POST['title']
+            page_url = request.POST['pageURL']
+            #Check if page is in banned list
+            banned_list = Blacklist.objects.all()
+
+            for banned_page in banned_list:
+                if str(banned_page) in page_url:
+                    return render(request, 'forest/user.html', {
+                        "error": "This page is banned!"
+                    })
+                    break
+
+            #TODO: Add website to the database
+
+            return HttpResponse("Add to the database")
+        else:
+            return render(request, "forest/user.html")
+    else:
+        return redirect(reverse("login"))
