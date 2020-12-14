@@ -10,3 +10,12 @@ class Blocked(models.Model):
 
     def __str__(self):
         return f"{self.page_url}"
+
+
+class Page(models.Model):
+    page_owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    page_name = models.CharField(max_length=120)
+    page_url = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return f"{self.page_name}"
