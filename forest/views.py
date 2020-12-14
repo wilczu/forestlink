@@ -13,6 +13,7 @@ def remove_sessions(request):
         if session in request.session:
             del request.session[session]
 
+
 def index(request):
     return render(request, "forest/index.html")
 
@@ -96,7 +97,6 @@ def add_page(request):
 
 def user_view(request):
     if request.user.is_authenticated:
-        remove_sessions(request)
         return render(request, "forest/user.html", {
             "all_pages": Page.objects.all().filter(page_owner = request.user)
         })
