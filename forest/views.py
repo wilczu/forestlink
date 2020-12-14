@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import User, Blocked
+from .models import User, Blocked, Page
 
 # Create your views here.
 def index(request):
@@ -77,6 +77,9 @@ def user_view(request):
 
             return HttpResponse("Add to the database")
         else:
-            return render(request, "forest/user.html")
+            all_pages = Page.objects.all().filter(page_owner = request.user)
+            return render(request, "forest/user.html", {
+                "all_pages": all_pages
+            })
     else:
         return redirect(reverse("login"))

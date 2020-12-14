@@ -45,6 +45,24 @@
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPage">Add page</button>
           </div>
         </section>
+        <!-- [Display all user pages] -->
+        <section>
+          <div class="container">
+            <div class="row">
+              {% for page in all_pages %}
+                <div class="col col-md-2">
+                  <div class="card">
+                    <a href="{{ page.page_url }}" target="_blank">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ page.page_name }}</h5>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
     </main>
 
   <!-- Add page modal -->
