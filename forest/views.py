@@ -6,6 +6,13 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from .models import User, Blocked, Page
 
+def remove_sessions(request):
+    all_sessions = ['error', 'success']
+
+    for session in all_sessions:
+        if session in request.session:
+            del request.session[session]
+
 def index(request):
     return render(request, "forest/index.html")
 
@@ -62,6 +69,8 @@ def add_page(request):
     #TODO check the length of page name and url
     if request.user.is_authenticated:
         if request.method == 'POST':
+            #Clear all sessions
+            remove_sessions(request)
             
             page_name = request.POST['title']
             page_url = request.POST['pageURL']
@@ -70,6 +79,7 @@ def add_page(request):
             banned_list = Blocked.objects.all()
             for banned_page in banned_list:
                 if str(banned_page) in page_url:
+                    request.session['error'] = f"Unfortunately <b>{page_url}</b> is blocked!"
                     return redirect(reverse("user"))  
             #Saving data to the database
             save_page = Page.objects.create(
@@ -78,12 +88,15 @@ def add_page(request):
                 page_url = page_url
             )
             save_page.save()
+            #Set success session
+            request.session['success'] = f"{page_name} was added to your desktop!"
 
         return redirect(reverse("user"))    
 
 
 def user_view(request):
     if request.user.is_authenticated:
+        remove_sessions(request)
         return render(request, "forest/user.html", {
             "all_pages": Page.objects.all().filter(page_owner = request.user)
         })
