@@ -32,20 +32,30 @@
 
     <main>
         <!--[ Displaying messages ]-->
-        {% if error %}
-          <section>
+
+        <section>
+            {% if 'error' in request.session %}
               <div class="alert alert-danger" role="alert">
-                {{ error }}
+                {{ request.session.error }}
               </div>
-          </section>
-        {% endif %}
+            {% endif %}
+            {% if 'success' in request.session %} 
+              <div class="alert alert-success" role="alert">
+                {{ request.session.success }}
+              </div>
+            {% endif %} 
+        </section>
+
         <!--[ Add button for your pages ]-->
+
         <section>
           <div class="d-flex justify-content-center" style="margin-top: 30px;">
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPage">Add page</button>
           </div>
         </section>
+
         <!-- [Display all user pages] -->
+
         <section>
           <div class="container">
             <div class="row">
@@ -63,6 +73,7 @@
             </div>
           </div>
         </section>
+
     </main>
 
   <!-- Add page modal -->
@@ -73,7 +84,7 @@
           <h5 class="modal-title" id="addPageLabel">Add page</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{% url 'user' %}" method="POST">
+        <form action="{% url 'addPage' %}" method="POST">
           {% csrf_token %}
           <div class="modal-body">
             <div class="form-group">
