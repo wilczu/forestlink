@@ -6,7 +6,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from .models import User, Blocked, Page
 
-# Create your views here.
 def index(request):
     return render(request, "forest/index.html")
 
@@ -59,27 +58,34 @@ def register_view(request):
         return render(request, "forest/register.html")
 
 
-def user_view(request):
+def add_page(request):
+    #TODO check the length of page name and url
     if request.user.is_authenticated:
         if request.method == 'POST':
+            
             page_name = request.POST['title']
             page_url = request.POST['pageURL']
+
             #Check if page is in banned list
             banned_list = Blocked.objects.all()
-
             for banned_page in banned_list:
                 if str(banned_page) in page_url:
-                    return render(request, 'forest/user.html', {
-                        "error": "This page is banned!"
-                    })
+                    return redirect(reverse("user"))  
+            #Saving data to the database
+            save_page = Page.objects.create(
+                page_owner = request.user,
+                page_name = page_name,
+                page_url = page_url
+            )
+            save_page.save()
 
-            #TODO: Add website to the database
+        return redirect(reverse("user"))    
 
-            return HttpResponse("Add to the database")
-        else:
-            all_pages = Page.objects.all().filter(page_owner = request.user)
-            return render(request, "forest/user.html", {
-                "all_pages": all_pages
-            })
+
+def user_view(request):
+    if request.user.is_authenticated:
+        return render(request, "forest/user.html", {
+            "all_pages": Page.objects.all().filter(page_owner = request.user)
+        })
     else:
         return redirect(reverse("login"))
