@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import User, Blacklist
+from .models import User, Blocked
 
 # Register your models here.
 admin.site.register(User)
-admin.site.register(Blacklist)
+admin.site.register(Blocked)

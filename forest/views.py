@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import User, Blacklist
+from .models import User, Blocked
 
 # Create your views here.
 def index(request):
@@ -65,14 +65,13 @@ def user_view(request):
             page_name = request.POST['title']
             page_url = request.POST['pageURL']
             #Check if page is in banned list
-            banned_list = Blacklist.objects.all()
+            banned_list = Blocked.objects.all()
 
             for banned_page in banned_list:
                 if str(banned_page) in page_url:
                     return render(request, 'forest/user.html', {
                         "error": "This page is banned!"
                     })
-                    break
 
             #TODO: Add website to the database
 

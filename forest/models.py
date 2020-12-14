@@ -5,7 +5,7 @@ class User(AbstractUser):
     pass
 
 
-class Blacklist(models.Model):
+class Blocked(models.Model):
     page_url = models.CharField(max_length=1000)
 
     def __str__(self):
