@@ -6,7 +6,6 @@ body {
     margin-left: -11rem;
 }
 
-.card-img-top {
-    width: 150px;
-    height: 150px;
+.card-body {
+    color: #000;
 }
