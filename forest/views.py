@@ -76,6 +76,14 @@ def add_page(request):
             page_name = request.POST['title']
             page_url = request.POST['pageURL']
 
+            #Check if page name and url have correct length
+            if len(page_name) <= 0 or len(page_name) > 120:
+                request.session['error'] = "Your page name is too shirt or too long"
+                return redirect(reverse("user"))
+            if len(page_url) <= 0 or len(page_url) > 2000:
+                request.session['error'] = "Your page url is too shirt or too long"
+                return redirect(reverse("user"))
+                
             #Check if page is in banned list
             banned_list = Blocked.objects.all()
             for banned_page in banned_list:
