@@ -19,11 +19,3 @@ class Page(models.Model):
 
     def __str__(self):
         return f"{self.page_name}"
-
-
-class Color(models.Model):
-    color = models.CharField(max_length=60)
-    value = models.CharField(max_length=60)
-
-    def __str__(self):
-        return f"{self.color}"
