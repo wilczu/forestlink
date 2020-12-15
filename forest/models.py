@@ -18,4 +18,12 @@ class Page(models.Model):
     page_url = models.CharField(max_length=2000)
 
     def __str__(self):
-        return f"{self.page_name}"
+        return f"{self.page_owner.username} : {self.page_name}"
+
+class Color(models.Model):
+    page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name='color')
+    page_color = models.CharField(max_length=60)
+    text_color = models.CharField(max_length=60)
+
+    def __str__(self):
+        return f"{self.page.page_owner} : {self.page.page_name}"
