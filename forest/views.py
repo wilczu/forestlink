@@ -89,7 +89,7 @@ def add_page(request):
             banned_list = Blocked.objects.all()
             for banned_page in banned_list:
                 if str(banned_page) in page_url:
-                    request.session['error'] = f"Unfortunately <b>{page_url}</b> is blocked!"
+                    request.session['error'] = f"Unfortunately {page_url} is blocked!"
                     return redirect(reverse("user"))  
 
             #Saving colors to the database

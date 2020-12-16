@@ -34,16 +34,18 @@
         <!--[ Displaying messages ]-->
 
         <section>
+          <div class="container text-center">
             {% if 'error' in request.session %}
               <div class="alert alert-danger" role="alert">
-                {{ request.session.error }}
+                <b>{{ request.session.error }}</b>
               </div>
             {% endif %}
             {% if 'success' in request.session %} 
               <div class="alert alert-success" role="alert">
                 {{ request.session.success }}
               </div>
-            {% endif %} 
+            {% endif %}
+          </div>   
         </section>
 
         <!--[ Add button for your pages ]-->
