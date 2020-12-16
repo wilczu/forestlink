@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from fontawesome_5.fields import IconField
 
 class User(AbstractUser):
     pass
@@ -25,6 +26,7 @@ class Page(models.Model):
     page_name = models.CharField(max_length=120)
     page_url = models.CharField(max_length=2000) 
     page_color = models.ForeignKey(Color, on_delete=models.CASCADE, default=0, related_name="color")
+    page_icon = IconField()
 
     def __str__(self):
         return f"{self.page_owner.username} : {self.page_name}"
