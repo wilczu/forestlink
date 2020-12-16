@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'forest',
+    'fontawesome_5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
