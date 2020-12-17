@@ -11,6 +11,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     </header>
     <body>
+        <!--[ Displaying messages ]-->
+        <section>
+          <div class="text-white text-center">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </section>
         {% block body %}
         {% endblock %}
     </body>
