@@ -1,4 +1,5 @@
 {% extends "forest/layout.html" %}
+{% load fontawesome_5 %}
 
 {% block title %} Home page {% endblock %}
 
@@ -61,12 +62,16 @@
         <section style="margin-top: 20px;">
           <div class="container">
             <div class="row justify-content-center">
+              {% fontawesome_5_static %} 
               {% for page in all_pages %}
                 <div class="col col-md-2">
                   <div class="card" style="background: {{ page.page_color.background_color }};">
                     <a href="{{ page.page_url }}" class="text-decoration-none" target="_blank">
-                      <div class="card-body text-center">
-                        <h5 class="card-title" style="color: {{ page.page_color.text_color }};">{{ page.page_name }}</h5>
+                      <div class="card-body text-center fa-2x" style="color: {{ page.page_color.text_color }};">
+                        {{ page.page_icon.as_html }}
+                      </div>
+                      <div class="card-footer text-center" style="color: {{ page.page_color.text_color }};">
+                        <h5 class="card-title">{{ page.page_name }}</h5>
                       </div>
                     </a>
                   </div>
@@ -116,6 +121,11 @@
               </div>
 
             </div>
+            <br>
+            <div class="form-group">
+              {{ icons_dropdown }}
+            </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
