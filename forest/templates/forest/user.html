@@ -35,18 +35,15 @@
         <!--[ Displaying messages ]-->
 
         <section>
-          <div class="container text-center">
-            {% if 'error' in request.session %}
-              <div class="alert alert-danger" role="alert">
-                <b>{{ request.session.error }}</b>
-              </div>
+          <div class="text-white text-center">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                  {{ message }}
+                </div>
+              {% endfor %}
             {% endif %}
-            {% if 'success' in request.session %} 
-              <div class="alert alert-success" role="alert">
-                {{ request.session.success }}
-              </div>
-            {% endif %}
-          </div>   
+          </div>
         </section>
 
         <!--[ Add button for your pages ]-->

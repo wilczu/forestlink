@@ -5,19 +5,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django import forms
 from fontawesome_5.forms import IconFormField
+from django.contrib import messages
 
 from .models import User, Blocked, Page, Color
 
 class icons_dropdown(forms.Form):
     dropdown = IconFormField(label="Choose the icon")
-
-
-def remove_sessions(request):
-    all_sessions = ['error', 'success']
-
-    for session in all_sessions:
-        if session in request.session:
-            del request.session[session]
 
 
 def index(request):
@@ -75,8 +68,6 @@ def register_view(request):
 def add_page(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            #Clear all sessions
-            remove_sessions(request)
             
             page_name = request.POST['title']
             page_url = request.POST['pageURL']
@@ -86,20 +77,20 @@ def add_page(request):
 
             #Check if page name, icon and url have correct length
             if len(page_name) <= 0 or len(page_name) > 120:
-                request.session['error'] = "Your page name is too short or too long"
+                messages.warning(request, "Your page name is too short or too long")
                 return redirect(reverse("user"))
             if len(page_url) <= 0 or len(page_url) > 2000:
-                request.session['error'] = "Your page url is too short or too long"
+                messages.warning(request, "Your page url is too short or too long")
                 return redirect(reverse("user"))
             if len(page_icon) <=1:
-                request.session['error'] = "Please specify the Icon for your page"
+                messages.warning(request, "Please specify the Icon for your page")
                 return redirect(reverse("user"))
 
             #Check if page is in banned list
             banned_list = Blocked.objects.all()
             for banned_page in banned_list:
                 if str(banned_page) in page_url:
-                    request.session['error'] = f"Unfortunately {page_url} is blocked!"
+                    messages.warning(request, f"Unfortunately {page_url} is blocked!")
                     return redirect(reverse("user"))  
 
             #Saving colors to the database
@@ -120,7 +111,7 @@ def add_page(request):
             save_page.save()
 
             #Set success session
-            request.session['success'] = f"{page_name} was added to your desktop!"
+            messages.success(request, f"{page_name} was added to your desktop!")
 
         return redirect(reverse("user"))    
 
