@@ -27,9 +27,8 @@ def login_view(request):
             login(request, user)
             return redirect(reverse("user"))
         else:
-            return render(request, "forest/login.html", {
-                "error": "Invalid username or password!"
-            })
+            messages.warning(request, "Invalid username or password!")
+            return render(request, "forest/login.html")
     else:
         return render(request, "forest/login.html")
 
@@ -47,17 +46,15 @@ def register_view(request):
         confirmpassword = request.POST['confirmpassword']
 
         if password != confirmpassword:
-            return render(request, "forest/register.html", {
-                "error": "Your passwords must match."
-            })
+            messages.warning(request, "Your passwords must match.")
+            return render(request, "forest/register.html")
 
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "forest/register.html", {
-                "error": "This username is taken, please use different one"
-            })
+            messages.warning(request, "This username is taken, please use different one")
+            return render(request, "forest/register.html")
 
         login(request, user)
         return redirect(reverse("user"))
