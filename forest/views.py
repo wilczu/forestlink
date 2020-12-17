@@ -87,10 +87,10 @@ def add_page(request):
 
             #Check if page name, icon and url have correct length
             if len(page_name) <= 0 or len(page_name) > 120:
-                request.session['error'] = "Your page name is too shirt or too long"
+                request.session['error'] = "Your page name is too short or too long"
                 return redirect(reverse("user"))
             if len(page_url) <= 0 or len(page_url) > 2000:
-                request.session['error'] = "Your page url is too shirt or too long"
+                request.session['error'] = "Your page url is too short or too long"
                 return redirect(reverse("user"))
             if len(page_icon) <=1:
                 request.session['error'] = "Please specify the Icon for your page"
