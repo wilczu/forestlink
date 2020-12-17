@@ -4,7 +4,6 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django import forms
-from fontawesome_5.fields import IconField
 from fontawesome_5.forms import IconFormField
 
 from .models import User, Blocked, Page, Color
@@ -128,7 +127,6 @@ def add_page(request):
 
 def user_view(request):
     if request.user.is_authenticated:
-        print(type(IconField()))
         return render(request, "forest/user.html", {
             "all_pages": Page.objects.all().filter(page_owner = request.user),
             "icons_dropdown": icons_dropdown()
