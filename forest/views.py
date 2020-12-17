@@ -3,8 +3,15 @@ from django.urls import reverse
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
+from django import forms
+from fontawesome_5.fields import IconField
+from fontawesome_5.forms import IconFormField
 
 from .models import User, Blocked, Page, Color
+
+class icons_dropdown(forms.Form):
+    dropdown = IconFormField(label="Choose the icon")
+
 
 def remove_sessions(request):
     all_sessions = ['error', 'success']
@@ -76,13 +83,17 @@ def add_page(request):
             page_url = request.POST['pageURL']
             page_background = request.POST['bgColor']
             text_color = request.POST['textColor']
+            page_icon = request.POST['dropdown']
 
-            #Check if page name and url have correct length
+            #Check if page name, icon and url have correct length
             if len(page_name) <= 0 or len(page_name) > 120:
                 request.session['error'] = "Your page name is too shirt or too long"
                 return redirect(reverse("user"))
             if len(page_url) <= 0 or len(page_url) > 2000:
                 request.session['error'] = "Your page url is too shirt or too long"
+                return redirect(reverse("user"))
+            if len(page_icon) <=1:
+                request.session['error'] = "Please specify the Icon for your page"
                 return redirect(reverse("user"))
 
             #Check if page is in banned list
@@ -104,7 +115,8 @@ def add_page(request):
                 page_owner = request.user,
                 page_name = page_name,
                 page_url = page_url,
-                page_color = save_colors
+                page_color = save_colors,
+                page_icon = page_icon
             )
             save_page.save()
 
@@ -116,8 +128,10 @@ def add_page(request):
 
 def user_view(request):
     if request.user.is_authenticated:
+        print(type(IconField()))
         return render(request, "forest/user.html", {
-            "all_pages": Page.objects.all().filter(page_owner = request.user)
+            "all_pages": Page.objects.all().filter(page_owner = request.user),
+            "icons_dropdown": icons_dropdown()
         })
     else:
         return redirect(reverse("login"))
