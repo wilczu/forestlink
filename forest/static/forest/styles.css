@@ -9,3 +9,7 @@ body {
 .card-body {
     color: #000;
 }
+
+.col {
+    margin-bottom: 20px;
+}
