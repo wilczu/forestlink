@@ -15,18 +15,28 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'index' %}">Home page</a>
+                  <a class="nav-link" href="{% url 'index' %}">{% fa5_icon 'home' 'fas' %} Home page</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
+                  <a class="nav-link" href="#">{% fa5_icon 'pen' 'fas' %} Edit pages</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Pricing</a>
+                  <a class="nav-link" href="#">{% fa5_icon 'exclamation-triangle' 'fas' %} Report</a>
                 </li>
               </ul>
 
               <span class="navbar-text">
-                Hi, <b>{{ user.username }}</b>!
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Hi, <b>{{ user.username }}</b>!</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">{% fa5_icon 'cog' 'fas' %} Settings</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">{% fa5_icon 'sign-out-alt' 'fas' %} Logout</a>
+                  </li>   
+                </ul>             
               </span>
             </div>
         </div>
