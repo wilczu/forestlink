@@ -1,7 +1,11 @@
 {% extends "forest/layout.html" %}
-{% load fontawesome_5 %}
+{% load fontawesome_5 static %}
 
 {% block title %} Home page {% endblock %}
+
+{% block addons %}
+  <script src="{% static 'forest/managePage.js' %}"></script>
+{% endblock %}
 
 {% block body %}
   {% fontawesome_5_static %} 
