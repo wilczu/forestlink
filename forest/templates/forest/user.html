@@ -4,6 +4,7 @@
 {% block title %} Home page {% endblock %}
 
 {% block body %}
+  {% fontawesome_5_static %} 
 
     <nav class="navbar fixed-bottom navbar-dark bg-success navbar-expand-lg">
         <div class="container-fluid">
@@ -36,7 +37,7 @@
 
         <section>
           <div class="d-flex justify-content-center" style="margin-top: 30px;">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPage">Add page</button>
+            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addPage">{% fa5_icon 'plus' 'fas' %} Add page</button>
           </div>
         </section>
 
@@ -45,7 +46,6 @@
         <section style="margin-top: 20px;">
           <div class="container">
             <div class="row justify-content-center">
-              {% fontawesome_5_static %} 
               {% for page in all_pages %}
                 <div class="col col-md-2 page">
                   <div class="card" style="background: {{ page.page_color.background_color }};">
