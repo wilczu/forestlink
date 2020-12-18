@@ -13,3 +13,19 @@ body {
 .col {
     margin-bottom: 20px;
 }
+
+.page:hover {
+    animation: page-content 0.3s forwards;
+}
+
+@keyframes page-content {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0); 
+    }
+}
