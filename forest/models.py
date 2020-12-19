@@ -25,7 +25,7 @@ class Page(models.Model):
     page_owner = models.ForeignKey(User, on_delete=models.CASCADE)
     page_name = models.CharField(max_length=120)
     page_url = models.CharField(max_length=2000) 
-    page_color = models.ForeignKey(Color, on_delete=models.CASCADE, default=0, related_name="color")
+    page_color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name="color")
     page_icon = IconField()
 
     def __str__(self):
