@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django import forms
 from fontawesome_5.forms import IconFormField
 from django.contrib import messages
+from django.utils.datastructures import MultiValueDictKeyError
 
 from .models import User, Blocked, Page, Color
 
@@ -121,3 +122,32 @@ def user_view(request):
         })
     else:
         return redirect(reverse("login"))
+
+
+def remove_page(request):
+    if request.user.is_authenticated and request.method == "POST":
+        #Try to save ID from removeID field
+        try:
+            pageID = request.POST['removeID']
+        except MultiValueDictKeyError:
+            messages.warning(request, "Inappropriate HTML format")
+            return redirect(reverse("user"))
+        #Try to get the page from a database
+        try:
+            page = Page.objects.get(pk=int(pageID))
+        except ObjectDoesNotExist:
+            messages.warning(request, "Page not found")
+            return redirect(reverse("user"))
+        
+        #Check if user owns this page
+        if request.user == page.page_owner:
+            #Remove color and page from the datbaase
+            page.page_color.delete()
+            page.delete()
+            messages.success(request, "Page was removed successfully")
+            return redirect(reverse("user"))
+        else:
+            messages.warning(request, "You can only edit your pages!")
+            return redirect(reverse("user"))
+    else:
+        return redirect(reverse("user"))
