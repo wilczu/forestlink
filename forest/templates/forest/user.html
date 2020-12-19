@@ -22,7 +22,7 @@
                   <a class="nav-link" href="{% url 'index' %}">{% fa5_icon 'home' 'fas' %} Home page</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">{% fa5_icon 'pen' 'fas' %} Edit pages</a>
+                  <a class="nav-link" href="#" id="edit" value="off">{% fa5_icon 'pen' 'fas' %} <b>Edit pages</b></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">{% fa5_icon 'exclamation-triangle' 'fas' %} Report</a>
@@ -63,7 +63,7 @@
               {% for page in all_pages %}
                 <div class="col col-md-2 page">
                   <div class="card" style="background: {{ page.page_color.background_color }};">
-                    <a href="{{ page.page_url }}" class="text-decoration-none" target="_blank">
+                    <a href="{{ page.page_url }}" class="text-decoration-none site-link" target="_blank">
                       <div class="card-body text-center fa-2x" style="color: {{ page.page_color.text_color }};">
                         {{ page.page_icon.as_html }}
                       </div>
@@ -72,6 +72,18 @@
                       </div>
                     </a>
                   </div>
+
+                    <div class="control-buttons card bg-secondary" style="margin-top: 10px;">
+                      <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-fill bd-highlight">
+                          <button type="button" class="btn btn-primary btn-sm btn-block">{% fa5_icon 'pen' 'fas' %}</button>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight">
+                          <button type="button" class="btn btn-danger btn-sm btn-block">{% fa5_icon 'trash' 'fas' %}</button>
+                        </div>
+                      </div>
+                    </div>   
+
                 </div>
               {% endfor %}
             </div>
