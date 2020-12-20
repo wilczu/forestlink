@@ -22,6 +22,25 @@ body {
     width: 100% !important;
 }
 
+.img-thumbnail {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+}
+
+.triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 50px solid white;
+    margin-top: -20px;
+}
+
+.jumbotron {
+    padding: 20px;
+}
+
 @keyframes page-content {
     0% {
         transform: translateY(0);
