@@ -59,12 +59,27 @@
             <div class="jumbotron text-center bg-light">
                 <header>
                     <img src="{% static 'forest/images/logo.png' %}" class="img-thumbnail" alt="ForestTree logo">
-                    <h2 class="text-uppercase">Create your own desktop with pages!</h2>
+                    <h2 class="text-uppercase">
+                      <span class="badge bg-success">Create your own desktop with pages!</span>
+                    </h2>
                 </header>
             </div>
         </section>
 
-        <div class="triangle-down mx-auto"></div>
+        <section id="about" class="bg-success">
+            <div class="triangle-down mx-auto"></div>
+            <div class="jumbotron container text-center text-white">
+                <header>
+                    <h1>What is ForestLink?</h1>
+                </header>
+
+                <article>
+                    <p>
+                        {% lorem 2 b random %}
+                    </p>
+                </article>                
+            </div>
+        </section>
 
     </main>
 
