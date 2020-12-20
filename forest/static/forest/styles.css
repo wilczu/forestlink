@@ -42,6 +42,11 @@ body {
     padding-bottom: 40px;
 }
 
+.features-icon {
+    color: #398754;
+    margin-top: 50px;
+}
+
 @keyframes page-content {
     0% {
         transform: translateY(0);
