@@ -1,5 +1,5 @@
 body {
-    background-color: #212121;
+    background-color: #398754;
 }
 
 .dropup .dropdown-menu {
@@ -38,13 +38,16 @@ body {
 }
 
 .jumbotron {
-    padding-top: 40px;
     padding-bottom: 40px;
 }
 
 .features-icon {
     color: #398754;
     margin-top: 50px;
+}
+
+svg {
+    margin-bottom: -7%;
 }
 
 @keyframes page-content {
