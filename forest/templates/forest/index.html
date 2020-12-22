@@ -157,7 +157,56 @@
             </article>
           </div>
         </section>
-
     </main>
 
+    <footer>
+      <div class="container text-center jumbotron">
+
+        <div id="goTop">
+          <div class="btn btn-secondary">
+            {% fa5_icon 'sort-up' 'fas fa-2x' %}
+          </div>
+        </div>
+
+        <section style="margin-top: 30px;">
+          <div class="row text-white">
+            <div class="col col-md-4">
+              <article class="text-start">
+                <h2>{% fa5_icon 'tree' 'fas fa-1x' %} ForestLink</h2>
+                <hr>
+                <h6> {% lorem %} </h6>
+              </article>
+            </div>
+
+            <div class="col col-md-4">
+              <h2 class="text-start">User</h2>
+              <hr>
+              <ul class="list-group">
+                <li class="list-group-item">{% fa5_icon 'desktop' 'fas' %} Your desktop</li>
+                <li class="list-group-item">{% fa5_icon 'exclamation-triangle' 'fas' %} Report</li>
+                <li class="list-group-item">{% fa5_icon 'cog' 'fas' %} Settings</li>
+              </ul>
+            </div>
+
+            <div class="col col-md-4">
+              <h2 class="text-start">Quick menu</h2>
+              <hr>
+              <ul class="list-group">
+                <li class="list-group-item">{% fa5_icon 'home' 'fas' %} Home page</li>
+                <li class="list-group-item">{% fa5_icon 'pen' 'fas' %} About</li>
+                <li class="list-group-item">{% fa5_icon 'align-right' 'fas' %} Features</li>
+                <li class="list-group-item">{% fa5_icon 'play' 'fas' %} Get started</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <section id="bottomFooter">
+        <h5>ForestLink &copy; <script>document.write(new Date().getFullYear())</script> Made with	
+        <span color="red">&#10084;<span> by <a href="https://github.com/wilczu" target="_blank">Wilchu</a>
+      </section>
+
+    </footer>
 {% endblock %}

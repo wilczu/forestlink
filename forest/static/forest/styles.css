@@ -50,6 +50,45 @@ svg {
     margin-bottom: -6%;
 }
 
+footer {
+    position: relative;
+    padding-top: 40px;
+    background-color: #212121;
+}
+
+.list-group-item {
+    background-color: #323232;
+    transition: ease-in-out 0.1s;
+    text-align: left;
+}
+
+.list-group-item:hover {
+    background-color: #398754;
+    cursor: pointer;
+}
+
+#bottomFooter {
+    padding: 20px;
+    text-align: center;
+    background-color: #121212;
+    color: #fff;
+}
+
+#goTop {
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+
+#goTop > .btn {
+    background-color: #323232;
+    border: none;
+}
+
+#goTop > .btn:hover {
+    background-color: #343434;
+}
+
 @keyframes page-content {
     0% {
         transform: translateY(0);
