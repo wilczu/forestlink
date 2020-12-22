@@ -37,17 +37,17 @@ body {
     margin-top: -20px;
 }
 
-.jumbotron {
-    padding-bottom: 40px;
-}
-
 .features-icon {
     color: #398754;
     margin-top: 50px;
 }
 
+.jumbotron > header {
+    padding: 50px;
+}
+
 svg {
-    margin-bottom: -7%;
+    margin-bottom: -6%;
 }
 
 @keyframes page-content {
