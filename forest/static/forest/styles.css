@@ -42,6 +42,10 @@ body {
     margin-top: 50px;
 }
 
+.jumbotron {
+    padding: 30px;
+}
+
 .jumbotron > header {
     padding: 50px;
 }
@@ -77,7 +81,7 @@ footer {
 #goTop {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 49%;
 }
 
 #goTop > .btn {
@@ -98,5 +102,25 @@ footer {
     }
     100% {
         transform: translateY(0); 
+    }
+}
+
+@media screen and (max-width: 990px) {
+    footer .col-md-4:first-child {
+        width: 100% !important;
+    }
+    footer .col-md-4 {
+        width: 40%;
+        margin: 20px;
+    }
+}
+
+@media only screen and (max-width: 763px) {
+    #goTop {
+        left: 45%;
+    }
+    footer .col-md-4 {
+        width: 100%;
+        margin: 20px;
     }
 }
