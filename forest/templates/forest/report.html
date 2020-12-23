@@ -3,5 +3,65 @@
 {% block title %} Report {% endblock %}
 
 {% block body %}
-    <h1>Report page</h1>
+
+<main>
+    <section style="margin-bottom: 20px;">
+        <!-- [ REPORT PAGE SECTION WITH FORM ] -->
+        <div class="container bg-dark text-white text-center">
+            <header>
+                <h1>Report page</h1>
+            </header>
+            <section style="padding: 20px;">
+                <div class="d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <form action="#" method="POST">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control form-control-lg" placeholder="URL of the website" name="reportPage">
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button type="submit" class="btn btn-danger btn-lg">Report page</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>          
+    </section>
+
+    <section style="margin-bottom: 20px;">>
+        <!-- [ REPORT PAGE SECTION WITH FORM ] -->
+        <div class="container bg-dark text-white text-center">
+            <header>
+                <h1>Report history</h1>
+            </header>
+
+            <div class="table-responsive">
+                <table class="table table-dark text-start table-lg">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Nr.</th>
+                            <th scope="col">Site URL</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>https://facebook.com</td>
+                            <td><span style="color: red;">Banned</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>https://twitter.com</td>
+                            <td><span style="color: orange;">Rejected</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+
+        </div>          
+    </section>
+
+</main>
+
 {% endblock %}
