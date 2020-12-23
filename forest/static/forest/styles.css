@@ -93,6 +93,11 @@ footer {
     background-color: #343434;
 }
 
+.list-group a {
+    color: #fff;
+    text-decoration: none;
+}
+
 @keyframes page-content {
     0% {
         transform: translateY(0);

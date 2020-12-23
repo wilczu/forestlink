@@ -3,9 +3,13 @@
 {% block title %} Home {% endblock %}
 {% load fontawesome_5 static %}
 
+{% block addons %}
+  <script src="{% static 'forest/js/scrolling.js' %}"></script>
+{% endblock %}
+
 {% block body %}
     {% fontawesome_5_static %} 
-    <nav class="navbar navbar-dark bg-success navbar-expand-lg">
+    <nav class="navbar navbar-dark bg-success navbar-expand-lg" id="top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">ForestLink</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,13 +21,13 @@
                   <a class="nav-link" href="{% url 'index' %}">{% fa5_icon 'home' 'fas' %} Home page</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#" id="edit" value="off">{% fa5_icon 'pen' 'fas' %} <b>About</b></a>
+                  <a class="nav-link page1" href="#">{% fa5_icon 'pen' 'fas' %} <b>About</b></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">{% fa5_icon 'align-right' 'fas' %} Features</a>
+                  <a class="nav-link page2" href="#">{% fa5_icon 'align-right' 'fas' %} Features</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">{% fa5_icon 'play' 'fas' %} Get started</a>
+                  <a class="nav-link page3" href="#">{% fa5_icon 'play' 'fas' %} Get started</a>
                 </li>
               </ul>
 
@@ -55,7 +59,7 @@
     </nav>
     
     <main>
-        <section id="header">
+        <section>
             <div class="jumbotron text-center bg-light">
                 <header>
                     <img src="{% static 'forest/images/logo.png' %}" class="img-thumbnail" alt="ForestTree logo">
@@ -165,9 +169,9 @@
       <div class="container text-center jumbotron">
 
         <div id="goTop">
-          <div class="btn btn-secondary">
+          <a class="btn btn-secondary footerTop">
             {% fa5_icon 'sort-up' 'fas fa-2x' %}
-          </div>
+          </a>
         </div>
 
         <section style="margin-top: 30px;">
@@ -194,10 +198,10 @@
               <h2 class="text-start">Quick menu</h2>
               <hr>
               <ul class="list-group">
-                <li class="list-group-item">{% fa5_icon 'home' 'fas' %} Home page</li>
-                <li class="list-group-item">{% fa5_icon 'pen' 'fas' %} About</li>
-                <li class="list-group-item">{% fa5_icon 'align-right' 'fas' %} Features</li>
-                <li class="list-group-item">{% fa5_icon 'play' 'fas' %} Get started</li>
+                <a href="{% url 'index' %}"><li class="list-group-item">{% fa5_icon 'home' 'fas' %} Home page</li></a>
+                <a href="#" class="page1"><li class="list-group-item">{% fa5_icon 'pen' 'fas' %} About</li></a>
+                <a href="#" class="page2"><li class="list-group-item">{% fa5_icon 'align-right' 'fas' %} Features</li></a>
+                <a href="#" class="page3"><li class="list-group-item">{% fa5_icon 'play' 'fas' %} Get started</li></a>
               </ul>
             </div>
           </div>
