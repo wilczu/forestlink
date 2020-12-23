@@ -4,38 +4,38 @@
 
 {% block body %}
 
-    <div class="container text-center text-white">
-        <header>
-            <h1>Register your account</h1>
-        </header>
-
-        <main class="d-flex justify-content-center" style="margin-top: 30px;">
-            <div class="col-md-4">
+    <div class="d-flex justify-content-center authenticate">
+        <div class="col-md-5 card">
+          <div class="card-body text-center">
+                <h1 class="card-title">Register</h1>
                 <form action="{% url 'register' %}" method="POST">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" placeholder="Username">
+                        <input type="text" class="form-control form-control-lg" name="username" placeholder="Username">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="email" placeholder="Email">
+                        <input type="text" class="form-control form-control-lg" name="email" placeholder="Email">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control form-control-lg" name="password" placeholder="Password">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="confirmpassword" placeholder="Repeat your password">
+                        <input type="password" class="form-control form-control-lg" name="confirmpassword" placeholder="Repeat your password">
                     </div>
-                    <div class="input-group mb-3">
-                        <button class="btn btn-primary">Register now</button>
+                    <div class="input-group d-grid mx-auto">
+                        <button class="btn btn-primary btn-lg">Register now</button>
                     </div>
                 </form>
-
-                <section>
-                    <article>Already have an account? <span class="badge bg-light text-dark"><a href="{% url 'login' %}">click here to login</a></span></article>
-                </section>
-
             </div>
-        </main>
-
-    </div>    
+            <div class="card-footer text-center">
+                <article>
+                <h5>
+                    Already have an account?
+                    <span class="badge bg-light text-dark"><a href="{% url 'login' %}">click here to login</a></span>
+                </h5>    
+                </article>
+            </div>          
+        </div>
+    </div>
+ 
 {% endblock %}
