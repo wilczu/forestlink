@@ -151,3 +151,10 @@ def remove_page(request):
             return redirect(reverse("user"))
     else:
         return redirect(reverse("user"))
+
+
+def report_view(request):
+    if request.user.is_authenticated:
+        return render(request, 'forest/report.html')
+    else:
+        return redirect(reverse("login"))
