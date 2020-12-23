@@ -25,7 +25,7 @@
                   <a class="nav-link" href="#" id="edit" value="off">{% fa5_icon 'pen' 'fas' %} <b>Edit pages</b></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">{% fa5_icon 'exclamation-triangle' 'fas' %} Report</a>
+                  <a class="nav-link" href="{% url 'report' %}">{% fa5_icon 'exclamation-triangle' 'fas' %} Report</a>
                 </li>
               </ul>
 
@@ -35,7 +35,7 @@
                     <a class="nav-link" href="#">Hi, <b>{{ user.username }}</b>!</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">{% fa5_icon 'cog' 'fas' %} Settings</a>
+                    <a class="nav-link" href="{% url 'settings' %}">{% fa5_icon 'cog' 'fas' %} Settings</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">{% fa5_icon 'sign-out-alt' 'fas' %} Logout</a>
