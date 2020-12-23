@@ -9,5 +9,6 @@ urlpatterns = [
     path("user", views.user_view, name="user"),
     path("addPage", views.add_page, name="addPage"),
     path("removePage", views.remove_page, name="remove_page"),
-    path("report", views.report_view, name="report")
+    path("report", views.report_view, name="report"),
+    path("settings", views.settings_view, name="settings")
 ]

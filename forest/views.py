@@ -158,3 +158,10 @@ def report_view(request):
         return render(request, 'forest/report.html')
     else:
         return redirect(reverse("login"))
+
+
+def settings_view(request):
+    if request.user.is_authenticated:
+        return render(request, "forest/settings.html")
+    else:
+        return render(reverse("login"))
