@@ -30,3 +30,16 @@ class Page(models.Model):
 
     def __str__(self):
         return f"{self.page_owner.username} : {self.page_name}"
+
+
+class Report(models.Model):
+    class reportChoce(models.IntegerChoices):
+        Reject = 1,
+        Block = 2,
+        Pending = 3
+    reported = models.ForeignKey(User, on_delete=models.CASCADE)
+    page = models.CharField(max_length=2000)
+    status = models.IntegerField(choices=reportChoce.choices)
+
+    def __str__(self):
+        return f"{self.page} : {self.status}"
