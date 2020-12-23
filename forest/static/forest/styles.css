@@ -98,6 +98,10 @@ footer {
     text-decoration: none;
 }
 
+.authenticate {
+    margin-top: 40px;
+}
+
 @keyframes page-content {
     0% {
         transform: translateY(0);
