@@ -14,7 +14,8 @@
             <section style="padding: 20px;">
                 <div class="d-flex justify-content-center">
                     <div class="col-md-6">
-                        <form action="#" method="POST">
+                        <form action="{% url 'processReport' %}" method="POST">
+                            {% csrf_token %}
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg" placeholder="URL of the website" name="reportPage">
                             </div>

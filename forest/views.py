@@ -7,8 +7,10 @@ from django import forms
 from fontawesome_5.forms import IconFormField
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 
-from .models import User, Blocked, Page, Color
+from .models import User, Blocked, Page, Color, Report
 
 class icons_dropdown(forms.Form):
     dropdown = IconFormField(label="Choose the icon")
@@ -159,6 +161,55 @@ def report_view(request):
     else:
         return redirect(reverse("login"))
 
+
+def process_report(request):
+    if request.method == "POST" and request.user.is_authenticated:
+        block = request.POST['reportPage']
+        error = False
+
+        #Check if this is an actual URL of the page
+        validate = URLValidator()
+        try:
+            validate(block)
+        except ValidationError as exception:
+            error = True
+            messages.warning(request, "Please provide correct URL")
+
+        #check the length of block page
+        if len(block) >=2001:
+            error = True
+            message.warning(request, "Your URL is too long")
+
+        #Check if the website is in blocked list
+        banned_list = Blocked.objects.all()
+        for banned_page in banned_list:
+            if str(banned_page) in block:
+                error = True
+                messages.warning(request, f"Unfortunately {block} is already blocked!")
+                break
+    
+        #Check if the website is in report list
+        report_list = Report.objects.all()
+        for report_item in report_list:
+            if str(report_item.page) in block:
+                error = True
+                messages.warning(request, f"Page {block} was already reported")
+                break
+
+        if error:
+            return redirect(reverse("report"))
+        else:
+            #Add this URL to the Report table
+            save_report = Report.objects.create(
+                reported = request.user,
+                page = block,
+            )
+            save_report.save()
+            #Return to the report page
+            messages.success(request, f"{block} was reported!")
+            return reverse(redirect("report"))
+    else:
+        return reverse(redirect("report"))
 
 def settings_view(request):
     if request.user.is_authenticated:
