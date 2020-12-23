@@ -38,7 +38,7 @@
                         <a class="nav-link" href="#">Hi, <b>{{ user.username }}</b>!</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{% fa5_icon 'desktop' 'fas' %} Your desktop</a>
+                        <a class="nav-link" href="{% url 'user' %}">{% fa5_icon 'desktop' 'fas' %} Your desktop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">{% fa5_icon 'sign-out-alt' 'fas' %} Logout</a>
@@ -158,8 +158,9 @@
               <hr>
               <h1>Create your own desktop</h1>
               <h3>for free today!</h3>
-              <button type="button" class="btn btn-outline-light btn-lg">{% fa5_icon 'tree' 'fas fa-1x' %} Create now</button>
-
+              <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-outline-light btn-lg">{% fa5_icon 'tree' 'fas fa-1x' %} Create now</button>
+              </a>
             </article>
           </div>
         </section>
@@ -188,9 +189,9 @@
               <h2 class="text-start">User</h2>
               <hr>
               <ul class="list-group">
-                <li class="list-group-item">{% fa5_icon 'desktop' 'fas' %} Your desktop</li>
-                <li class="list-group-item">{% fa5_icon 'exclamation-triangle' 'fas' %} Report</li>
-                <li class="list-group-item">{% fa5_icon 'cog' 'fas' %} Settings</li>
+                <a href="{% url 'user' %}"><li class="list-group-item">{% fa5_icon 'desktop' 'fas' %} Your desktop</li></a>
+                <a href="{% url 'report' %}"><li class="list-group-item">{% fa5_icon 'exclamation-triangle' 'fas' %} Report</li></a>
+                <a href="{% url 'settings' %}"><li class="list-group-item">{% fa5_icon 'cog' 'fas' %} Settings</li></a>
               </ul>
             </div>
 
