@@ -39,7 +39,7 @@ class Report(models.Model):
         Pending = 3
     reported = models.ForeignKey(User, on_delete=models.CASCADE)
     page = models.CharField(max_length=2000)
-    status = models.IntegerField(choices=reportChoce.choices)
+    status = models.IntegerField(choices=reportChoce.choices, default=3)
 
     def __str__(self):
         return f"{self.page} : {self.status}"
