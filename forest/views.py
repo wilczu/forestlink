@@ -9,11 +9,23 @@ from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator, EmptyPage
 
 from .models import User, Blocked, Page, Color, Report
 
 class icons_dropdown(forms.Form):
     dropdown = IconFormField(label="Choose the icon")
+
+
+def pagination(request, data_object, results):
+    paginator = Paginator(data_object, results)
+
+    try:
+        paginator_result = paginator.page(request.GET.get('page', 1))
+    except EmptyPage:
+        paginator_result = paginator.page(1)
+
+    return paginator_result
 
 
 def index(request):
@@ -118,8 +130,12 @@ def add_page(request):
 
 def user_view(request):
     if request.user.is_authenticated:
+        #Implement pagination to pages
+        all_pages = Page.objects.all().filter(page_owner = request.user)
+        pages = pagination(request, all_pages, 20)
+
         return render(request, "forest/user.html", {
-            "all_pages": Page.objects.all().filter(page_owner = request.user),
+            "all_pages": pages,
             "icons_dropdown": icons_dropdown()
         })
     else:
