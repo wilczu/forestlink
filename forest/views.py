@@ -173,8 +173,12 @@ def remove_page(request):
 
 def report_view(request):
     if request.user.is_authenticated:
+        #Implement pagination to reports
+        all_reports = Report.objects.all().filter(reported=request.user)
+        reports = pagination(request, all_reports, 20)
+
         return render(request, 'forest/report.html', {
-            "all_reports": Report.objects.all().filter(reported=request.user)
+            "all_reports": reports
         })
     else:
         return redirect(reverse("login"))

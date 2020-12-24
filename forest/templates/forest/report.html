@@ -67,6 +67,33 @@
                 </div>            
             {% endif %}         
 
+        <!-- [ TABLE PAGINATION ] -->
+
+        <section class="d-flex justify-content-center">
+          <nav aria-label="Pagination">
+            <ul class="pagination pagination-lg">
+                {% if all_reports.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% url 'report' %}?page={{ all_reports.previous_page_number }}">Previous</a>
+                  </li>
+                {% endif %}
+
+                {% for page in all_reports.paginator.page_range %}
+                  <li class="page-item {% if page == all_reports.number %} active {% endif %}">
+                    <a class="page-link" href="{% url 'report' %}?page={{ page }}">{{ page }}</a>
+                  </li>
+                {% endfor %}
+
+                {% if all_reports.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% url 'report' %}?page={{ all_reports.next_page_number }}">Next</a>
+                  </li>
+                {% endif %}
+
+            </ul>
+          </nav>
+        </section>
+
         </div>          
     </section>
 
