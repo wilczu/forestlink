@@ -7,7 +7,7 @@
 <main>
     <section style="margin-bottom: 20px;">
         <!-- [ REPORT PAGE SECTION WITH FORM ] -->
-        <div class="container bg-dark text-white text-center">
+        <div class="container bg-dark text-white text-center" style="padding: 20px;">
             <header>
                 <h1>Report page</h1>
             </header>
@@ -29,9 +29,9 @@
         </div>          
     </section>
 
-    <section style="margin-bottom: 20px;">>
+    <section style="margin-bottom: 20px;">
         <!-- [ REPORT PAGE SECTION WITH FORM ] -->
-        <div class="container bg-dark text-white text-center">
+        <div class="container bg-dark text-white text-center" style="padding: 20px;">
             <header>
                 <h1>Report history</h1>
             </header>
@@ -54,6 +54,10 @@
                                     {{ report.get_status_display }}
                                 </td>
                             </tr>
+                            {% empty %}
+                            <div class="alert alert-info" role="alert">
+                                Nothing to display here yet.
+                            </div>
                         {% endfor %}
                     </tbody>
                 </table>
