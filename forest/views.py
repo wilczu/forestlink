@@ -157,7 +157,9 @@ def remove_page(request):
 
 def report_view(request):
     if request.user.is_authenticated:
-        return render(request, 'forest/report.html')
+        return render(request, 'forest/report.html', {
+            "all_reports": Report.objects.all().filter(reported=request.user)
+        })
     else:
         return redirect(reverse("login"))
 
@@ -210,6 +212,7 @@ def process_report(request):
             return reverse(redirect("report"))
     else:
         return reverse(redirect("report"))
+
 
 def settings_view(request):
     if request.user.is_authenticated:

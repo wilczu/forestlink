@@ -46,16 +46,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>https://facebook.com</td>
-                            <td><span style="color: red;">Banned</span></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>https://twitter.com</td>
-                            <td><span style="color: orange;">Rejected</span></td>
-                        </tr>
+                        {% for report in all_reports %}
+                            <tr>
+                                <th scope="row">{{ report.id }}</th>
+                                <td>{{ report.page }}</td>
+                                <td class="{{report.get_status_display}}">
+                                    {{ report.get_status_display }}
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>            
