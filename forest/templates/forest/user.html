@@ -90,6 +90,33 @@
           </div>
         </section>
 
+        <!-- [ Pagination ] -->
+
+        <section class="d-flex justify-content-center">
+          <nav aria-label="Pagination">
+            <ul class="pagination pagination-lg">
+                {% if all_pages.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% url 'user' %}?page={{ all_pages.previous_page_number }}">Previous</a>
+                  </li>
+                {% endif %}
+
+                {% for page in all_pages.paginator.page_range %}
+                  <li class="page-item {% if page == all_pages.number %} active {% endif %}">
+                    <a class="page-link" href="{% url 'user' %}?page={{ page }}">{{ page }}</a>
+                  </li>
+                {% endfor %}
+
+                {% if all_pages.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% url 'user' %}?page={{ all_pages.next_page_number }}">Next</a>
+                  </li>
+                {% endif %}
+
+            </ul>
+          </nav>
+        </section>
+
     </main>
 
   <!-- Add page modal -->
