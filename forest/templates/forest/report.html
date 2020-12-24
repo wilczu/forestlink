@@ -38,32 +38,34 @@
                 <h1>Report history</h1>
             </header>
 
-            <div class="table-responsive">
-                <table class="table table-dark text-start table-lg">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">Nr.</th>
-                            <th scope="col">Site URL</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for report in all_reports %}
+            {% if all_reports %}
+                <div class="table-responsive">
+                    <table class="table table-dark text-start table-lg">
+                        <thead class="table-light">
                             <tr>
-                                <th scope="row">{{ report.id }}</th>
-                                <td>{{ report.page }}</td>
-                                <td class="{{report.get_status_display}}">
-                                    {{ report.get_status_display }}
-                                </td>
+                                <th scope="col">Nr.</th>
+                                <th scope="col">Site URL</th>
+                                <th scope="col">Status</th>
                             </tr>
-                            {% empty %}
-                            <div class="alert alert-info" role="alert">
-                                Nothing to display here yet.
-                            </div>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>            
+                        </thead>
+                        <tbody>
+                            {% for report in all_reports %}
+                                <tr>
+                                    <th scope="row">{{ report.id }}</th>
+                                    <td>{{ report.page }}</td>
+                                    <td class="{{report.get_status_display}}">
+                                        {{ report.get_status_display }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>               
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    Nothing to display here yet.
+                </div>            
+            {% endif %}         
 
         </div>          
     </section>
