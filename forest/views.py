@@ -131,7 +131,7 @@ def add_page(request):
 def user_view(request):
     if request.user.is_authenticated:
         #Implement pagination to pages
-        all_pages = Page.objects.all().filter(page_owner = request.user)
+        all_pages = Page.objects.all().filter(page_owner = request.user).order_by('-id')
         pages = pagination(request, all_pages, 20)
 
         return render(request, "forest/user.html", {
@@ -174,7 +174,7 @@ def remove_page(request):
 def report_view(request):
     if request.user.is_authenticated:
         #Implement pagination to reports
-        all_reports = Report.objects.all().filter(reported=request.user)
+        all_reports = Report.objects.all().filter(reported=request.user).order_by('-id')
         reports = pagination(request, all_reports, 20)
 
         return render(request, 'forest/report.html', {
