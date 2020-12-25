@@ -186,13 +186,13 @@
           {% csrf_token %}
           <div class="modal-body">
             <div class="form-group">
-              <label for="editPage">Page URL:</label>
-              <input type="text" class="form-control" id="editPage" name="pageURL" value="https://google.com">
+              <label for="editPageInput">Page URL:</label>
+              <input type="text" class="form-control" id="editPageInput" name="pageURL">
             </div>
             <br>
             <div class="form-group">
-              <label for="editTitle">Title:</label>
-              <input type="text" class="form-control" id="editTitle" name="title" value="Google search">
+              <label for="editTitleInput">Title:</label>
+              <input type="text" class="form-control" id="editTitleInput" name="title">
             </div>
             <br>
             <div class="row">
@@ -200,23 +200,18 @@
               <div class="col">
                 <div class="form-group">
                   <label for="editBGcolor">Background color:</label>
-                  <input type="color" class="form-control" name="bgColor" id="editBGcolor" value="#fff">
+                  <input type="color" class="form-control" name="bgColor" id="editBGcolor">
                 </div>
               </div>
 
               <div class="col">
                 <div class="form-group">
                   <label for="editTxtColor">Text color:</label>
-                  <input type="color" class="form-control" name="textColor" id="editTxtColor" value="#000">
+                  <input type="color" class="form-control" name="textColor" id="editTxtColor">
                 </div>
               </div>
 
             </div>
-            <br>
-            <div class="form-group">
-              {{ icons_dropdown }}
-            </div>
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

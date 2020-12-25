@@ -64,4 +64,19 @@ function editModal(pageID) {
     $('#editPage').modal('show');
     //Passing ID value to the modal edit button
     $('#confirmEdit').val(pageID);
+    //Isert values to the input fields on the edit modal
+    getEditData(pageID);
+}
+
+
+function getEditData(pageID) {
+    fetch(`/pageData/${pageID}`, {
+        method: 'GET'
+    }).then(response => response.json())
+    .then(data => {
+        $('#editPageInput').val(data['url']);
+        $('#editTitleInput').val(data['name']);
+        $('#editBGcolor').val(data['BGcolor']);
+        $('#editTxtColor').val(data['TxTcolor']);
+    });
 }
