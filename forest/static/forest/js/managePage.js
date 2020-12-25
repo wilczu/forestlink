@@ -9,7 +9,10 @@ $(document).ready(function(){
     $('.removeButton').on('click', function() {
         removeModal($(this).data('id'));
     })
-
+    //Triggering editModal function when pressing edit button
+    $('.editButton').on('click', function() {
+        editModal($(this).data('id'));
+    });
 });
 
 function toggleEdit() {
@@ -53,4 +56,12 @@ function removeModal(pageID) {
     $('#removePage').modal('show');
     //Passing ID value to the modal remove button
     $('#confirmRemove').val(pageID);
+}
+
+
+function editModal(pageID) {
+    //Show edit modal
+    $('#editPage').modal('show');
+    //Passing ID value to the modal edit button
+    $('#confirmEdit').val(pageID);
 }
