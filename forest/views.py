@@ -245,6 +245,46 @@ def settings_view(request):
 
 
 @login_required()
+def edit_page(request):
+    if request.method == "POST":
+        #Check if this page exists
+        try:
+            get_page = Page.objects.get(pk=int(request.POST['editID']))
+        except ObjectDoesNotExist:
+            messages.warning(request, "This page does not exist!")
+            return redirect(reverse('user'))
+        #Check if this page is from the user
+        if request.user == get_page.page_owner:
+            #Get all data
+            edit_url = request.POST['pageURL']
+            edit_title = request.POST['title']
+            edit_background = request.POST['bgColor']
+            edit_text = request.POST['textColor']
+
+            #Check if page name, icon and url have correct length
+            if len(edit_title) <= 0 or len(edit_title) > 120:
+                messages.warning(request, "Your page name is too short or too long")
+                return redirect(reverse("user"))
+            if len(edit_url) <= 0 or len(edit_url) > 2000:
+                messages.warning(request, "Your page url is too short or too long")
+                return redirect(reverse("user"))
+
+            #Saving changes to the database
+            
+            get_page.page_url = edit_url
+            get_page.page_name = edit_title
+            #Remove current color settings
+            get_page.page_color.delete()
+            #Creating new colors for this page
+            new_color = Color(background_color=edit_background, text_color=edit_text)
+            new_color.save()
+            get_page.page_color = new_color
+            get_page.save()
+            messages.success(request, f"{edit_title} was succesfully updated")
+
+    return redirect(reverse('user'))
+
+@login_required()
 def page_data(request, page_id):
     #Check if request method is correct
     if request.method !="GET":
