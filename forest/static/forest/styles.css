@@ -106,11 +106,11 @@ footer {
     background-color: #343434 !important;
 }
 
-.Reject {
+.Rejected {
     color: orange;
 }
 
-.Block {
+.Blocked {
     color: red;
 }
 
