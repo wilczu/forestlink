@@ -11,7 +11,6 @@ from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
-from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage
 
 from .models import User, Blocked, Page, Color, Report
@@ -238,9 +237,8 @@ def process_report(request):
         return reverse(redirect("report"))
 
 
-@login_required()
 def edit_page(request):
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated:
         #Check if this page exists
         try:
             get_page = Page.objects.get(pk=int(request.POST['editID']))
@@ -279,26 +277,29 @@ def edit_page(request):
     return redirect(reverse('user'))
 
 
-@login_required()
 def page_data(request, page_id):
-    #Check if request method is correct
-    if request.method !="GET":
-        return JsonResponse({"error": "Incorrect request method!"}, status=400)
+    #Check if user is authenticated
+    if request.user.is_authenticated:
+        #Check if request method is correct
+        if request.method !="GET":
+            return JsonResponse({"error": "Incorrect request method!"}, status=400)
 
-    #Try to get the page from the database
-    try:
-        get_page = Page.objects.get(pk=int(page_id))
-    except ObjectDoesNotExist:
-        return JsonResponse({"error": "Page not found!"}, status=404)
+        #Try to get the page from the database
+        try:
+            get_page = Page.objects.get(pk=int(page_id))
+        except ObjectDoesNotExist:
+            return JsonResponse({"error": "Page not found!"}, status=404)
 
-    #Check if user is an author of the page
-    if request.user == get_page.page_owner:
-        return JsonResponse({
-            "name": get_page.page_name,
-            "url": get_page.page_url,
-            "BGcolor": get_page.page_color.background_color,
-            "TxTcolor": get_page.page_color.text_color,
-        }, status=201)
+        #Check if user is an author of the page
+        if request.user == get_page.page_owner:
+            return JsonResponse({
+                "name": get_page.page_name,
+                "url": get_page.page_url,
+                "BGcolor": get_page.page_color.background_color,
+                "TxTcolor": get_page.page_color.text_color,
+            }, status=201)
 
+        else:
+            return JsonResponse({"error" : "You can only get data about your pages!"}, status=401)
     else:
-        return JsonResponse({"error" : "You can only get data about your pages!"}, status=401)
+        return redirect(reverse('login'))
