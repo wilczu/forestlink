@@ -13,7 +13,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator, EmptyPage
 
-from .models import User, Blocked, Page, Color, Report
+from .models import User, Page, Color, Report
 
 #Generating Icons form
 class icons_dropdown(forms.Form):
@@ -101,10 +101,11 @@ def add_page(request):
                 messages.warning(request, "Please specify the Icon for your page")
                 return redirect(reverse("user"))
 
-            #Check if page is in banned list
-            banned_list = Blocked.objects.all()
-            for banned_page in banned_list:
-                if str(banned_page) in page_url:
+            #Check if page is in report page
+            #And was accepted by the administrator
+            report_list = Report.objects.all()
+            for report in report_list:
+                if str(report.page) in page_url and report.status == 2:
                     messages.warning(request, f"Unfortunately {page_url} is blocked!")
                     return redirect(reverse("user"))  
 
@@ -204,14 +205,6 @@ def process_report(request):
         if len(block) >=2001:
             error = True
             message.warning(request, "Your URL is too long")
-
-        #Check if the website is in blocked list
-        banned_list = Blocked.objects.all()
-        for banned_page in banned_list:
-            if str(banned_page) in block:
-                error = True
-                messages.warning(request, f"Unfortunately {block} is already blocked!")
-                break
     
         #Check if the website is in report list
         report_list = Report.objects.all()
