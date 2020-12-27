@@ -16,6 +16,7 @@ from django.core.paginator import Paginator, EmptyPage
 
 from .models import User, Blocked, Page, Color, Report
 
+#Generating Icons form
 class icons_dropdown(forms.Form):
     dropdown = IconFormField(label="Choose the icon")
 
@@ -237,13 +238,6 @@ def process_report(request):
         return reverse(redirect("report"))
 
 
-def settings_view(request):
-    if request.user.is_authenticated:
-        return render(request, "forest/settings.html")
-    else:
-        return render(reverse("login"))
-
-
 @login_required()
 def edit_page(request):
     if request.method == "POST":
@@ -283,6 +277,7 @@ def edit_page(request):
             messages.success(request, f"{edit_title} was succesfully updated")
 
     return redirect(reverse('user'))
+
 
 @login_required()
 def page_data(request, page_id):
