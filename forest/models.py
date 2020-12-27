@@ -6,13 +6,6 @@ class User(AbstractUser):
     pass
 
 
-class Blocked(models.Model):
-    page_url = models.CharField(max_length=1000)
-
-    def __str__(self):
-        return f"{self.page_url}"
-
-
 class Color(models.Model):
     background_color = models.CharField(max_length=60)
     text_color = models.CharField(max_length=60)
@@ -34,8 +27,8 @@ class Page(models.Model):
 
 class Report(models.Model):
     class reportChoce(models.IntegerChoices):
-        Reject = 1,
-        Block = 2,
+        Rejected = 1,
+        Blocked = 2,
         Pending = 3
     reported = models.ForeignKey(User, on_delete=models.CASCADE)
     page = models.CharField(max_length=2000)
